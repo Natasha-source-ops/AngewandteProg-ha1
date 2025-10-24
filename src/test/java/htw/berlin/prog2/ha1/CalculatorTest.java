@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CalculatorTest {
 
     @Test
-    @DisplayName("should display result after adding two positive multi-digit numbers")
+    @DisplayName("Should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
         Calculator calc = new Calculator();
 
@@ -88,25 +88,64 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
-    // Other tests
+    // Teilaufgabe 1:
     @Test
-    @DisplayName("Should minus two whole numbers correctly")
+    @DisplayName("Two whole numbers are subtracted correctly")
     void testWholeNumbers() {
-         Calculator calc = new Calculator();
+        Calculator calc = new Calculator();
 
-       calc.pressDigitKey(8);
-       calc.pressBinaryOperationKey("-");
-       calc.pressDigitKey(2);
-       calc.pressEqualsKey();
-       
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
 
         String expected = "6";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
-
-        
     }
 
+    // Fehler in Calculator
+    //- Teilaufgabe 2: Fehler 1- Calculator doesnot display more than nine digits
+    @Test
+    @DisplayName("Should diplay at least ten digits on the screen")
+    void testDisplayTenDigits() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(0);
+
+        String expected = "123456780";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    // Fehler 2:testClearKeyOnceShouldNotResetStoredValues()
+
+    @Test
+    @DisplayName("The clear key shouldnot reset stored values")
+    void clearKeyKeepsOperationValue() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        
+        calc.pressClearKey();
+        calc.pressDigitKey(5);
+
+        String expected = "0";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+
+         
+
+    }
 }
