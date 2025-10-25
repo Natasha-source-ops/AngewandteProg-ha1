@@ -26,6 +26,7 @@ public class Calculator {
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
+     * Es werden nur Eingaben von maximal 9 Stellen aktzeptiert.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
@@ -33,7 +34,7 @@ public class Calculator {
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
-        screen = screen + digit;
+        if (screen.length() < 9) screen = screen + digit;
     }
 
     /**
