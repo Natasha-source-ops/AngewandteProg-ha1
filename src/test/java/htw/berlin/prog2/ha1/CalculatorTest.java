@@ -130,4 +130,45 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+
+    @Test
+    @DisplayName("Shows intermediate sum when chaining addition operations")
+    void testdisplayIntermediateResult() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "8";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Shows intermediate result when chaining multiplication into addition")
+    void testdisplayIntermediateResultWithMultiplication() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+
+        String expected = "15";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Repeating equals with addition reuses last operand and operator")
+    void testdisplayIntermediateResultWithTwoTimesOperation() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
