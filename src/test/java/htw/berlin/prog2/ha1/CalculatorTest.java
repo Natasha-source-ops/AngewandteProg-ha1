@@ -88,7 +88,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    // Teilaufgabe 1:
+    @Test
+    @DisplayName("Subtracts two whole numbers correctly")
+    void testWholeNumbers() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    
 }
-
