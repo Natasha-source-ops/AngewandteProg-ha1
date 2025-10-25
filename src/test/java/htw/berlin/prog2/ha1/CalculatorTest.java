@@ -106,4 +106,28 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     
+
+    // Fehler in Calculator
+    // - Teilaufgabe 2: Fehler 1- Calculator doesnot display more than nine digits
+    @Test
+    @DisplayName("Limits display output to nine digits")
+    void testdisplayMaxNineDigits() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(0);
+
+        String expected = "123456789";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
